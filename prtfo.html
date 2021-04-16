@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>portfo</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Encode+Sans+Semi+Expanded:wght@300&display=swap');
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            width: 100vw;
+            height: 100vh;
+            overflow-x: hidden;
+            overflow-y: hidden;
+            font-family: 'Encode Sans Semi Expanded', sans-serif;
+        }
+        .page{
+            width: 100%;
+            height: 100%;
+        }
+        #mainpage{
+            background: black;
+        }
+        #btnwrap{
+            position: fixed;
+            left: -130px;
+            top: 50%;
+            width: 45px;
+            height: 120px;      
+            z-index: 999;
+            transform: translate(0,-60px);
+            transition: 0.3s;
+        }
+        .btn{
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            transition: 0.3s;
+            color: #4cff4d;
+            opacity: 0.5;
+            text-align: center;
+            line-height: 45px;
+            font-size: 15px;
+            font-weight: bold;
+        }
+        .btn:hover{
+            cursor: pointer;
+            opacity: 80%;
+        }
+        #bottombtn{
+            margin-top: 30px;
+        }
+        #maintype{
+            width: 850px;
+            color: #4cff4d;
+            position: absolute;
+            text-align: center;
+            top: 50%;
+            left: 50%;
+            transform: translate(-425px, -100px);
+        }
+        .numdiv{
+            float: left;
+            width: 10%;
+            font-size: 75px;
+        }
+        #maintype p{
+            clear: both;
+            font-size: 35px;
+            padding-top: 10px;
+            opacity: 0;
+            transition: 0.8s;
+        }
+        .bgText{
+            color: #4cff4d;
+            position: absolute;
+        }
+        .bgText span{
+            display: block;
+        }
+        .bgText:nth-child(1){
+            top: 70px;
+            left: 20px;
+            opacity: 0.3;
+            font-size: 10px;
+        }
+        .bgText:nth-child(2){
+            top: 100px;
+            left: 50px;
+            opacity: 0.3;
+            font-size: 10px;
+        }
+        .bgText:nth-child(3){
+            top: 150px;
+            left: 100px;
+            opacity: 0.5;
+            font-size: 13px;
+        }
+        .bgText:nth-child(4){
+            top: 200px;
+            left: 150px;
+            opacity: 0.8;
+            font-size: 18px;
+        }
+        .bgText:nth-child(5){
+            top: 100px;
+            left: 200px;
+            opacity: 0.2;
+            font-size: 12px;
+        }
+        .bgText:nth-child(6){
+            top: 150px;
+            left: 250px;
+            opacity: 0.5;
+            font-size: 15px;
+        }
+        .bgText:nth-child(7){
+            top: 50px;
+            left: 300px;
+            opacity: 0.3;
+            font-size: 17px;
+        }
+        .bgText:nth-child(8){
+            top: 150px;
+            left: 350px;
+            opacity: 0.7;
+            font-size: 13px;
+        }
+        .bgText:nth-child(9){
+            top: 250px;
+            left: 400px;
+            opacity: 0.4;
+            font-size: 14px;
+        }
+        .bgText:nth-child(10){
+            top: 150px;
+            left: 450px;
+            opacity: 0.7;
+            font-size: 15px;
+        }
+        .bgText:nth-child(11){
+            top: 50px;
+            left: 500px;
+            opacity: 0.3;
+            font-size: 12px;
+        }   
+        .bgText:nth-child(12){
+            top: 100px;
+            right: 50px;
+            opacity: 0.3;
+            font-size: 10px;
+        }
+        .bgText:nth-child(13){
+            top: 150px;
+            right: 100px;
+            opacity: 0.5;
+            font-size: 13px;
+        }
+        .bgText:nth-child(14){
+            top: 200px;
+            right: 150px;
+            opacity: 0.8;
+            font-size: 18px;
+        }
+        .bgText:nth-child(15){
+            top: 100px;
+            right: 200px;
+            opacity: 0.2;
+            font-size: 12px;
+        }
+        .bgText:nth-child(16){
+            top: 150px;
+            right: 250px;
+            opacity: 0.5;
+            font-size: 15px;
+        }
+        .bgText:nth-child(17){
+            top: 50px;
+            right: 300px;
+            opacity: 0.3;
+            font-size: 17px;
+        }
+        .bgText:nth-child(18){
+            top: 150px;
+            right: 350px;
+            opacity: 0.7;
+            font-size: 13px;
+        }
+        .bgText:nth-child(19){
+            top: 250px;
+            right: 400px;
+            opacity: 0.4;
+            font-size: 12px;
+        }
+        .bgText:nth-child(20){
+            top: 150px;
+            right: 450px;
+            opacity: 0.7;
+            font-size: 17px;
+        }
+        .bgText.on{
+            top: 100vh;
+        }
+
+        #firstpage{
+            padding-top: 100px;
+            background: black;
+        }
+        #textwrap{
+            width: 400px;
+            height: auto;
+            box-sizing: border-box;
+            margin-left: 100px;
+            position: relative;
+        }
+        #skilltextcover{
+            background: black;
+            width: 400px;
+            height: 40px;
+            position: absolute;
+            top: 0;
+            left: 50px;
+            border-left: 2px solid #4cff4d;
+            animation: textcovercus linear infinite 1.2s;
+            animation-play-state: paused;
+        }
+        .skilltext{
+            float: left;
+            width: 12.49%;
+            text-align: center;
+        }
+        #textwrap .skilltext span{
+            font-size: 30px;
+            color: #4cff4d;
+        }
+        @keyframes textcovercus{
+            0%{
+                border-left: 2px solid #4cff4d;
+            }
+            50%{
+                border-left: 2px solid black;
+            }
+            100%{
+                border-left: 2px solid #4cff4d;
+            }
+        }
+        
+        #contwrap{
+            clear: both;
+            width: 100vw;
+            height: 600px;
+            padding-top: 100px;
+        }
+        #contwrap p{
+            font-size: 40px;
+            color: #4cff4d;
+            line-height: 140px;
+            margin-left: 60px;
+        }
+        .graphbox{
+            width: 1200px;
+            height: 25%;
+        }
+        .titlebox{
+            float: left;
+            width: 350px;
+            height: 100%;
+        }
+        .graph{
+            float: left;
+            width: 800px;
+            height: 100%;
+        }
+        .graphbox_box{
+            width: 100%;
+            height: 50px;
+            border: 5px solid #4cff4d;
+            border-radius: 10px;
+            margin-top: 50px;
+        }
+        .graphbox_box_box{
+            float: left;
+            margin: 0.5%;
+            width: 19%;
+            height: 83%;
+            border-radius: 3px;
+            background: black;
+        }
+
+
+    </style>
+    <script>
+        $(function(){
+            
+//            var pageh1 = $("#mainpage").offset().top;
+              var pageh2 = $("#firstpage").offset().top;
+//            var pageh3 = $("#secondpage").offset().top;
+            
+            
+            $("body,html").animate({"scrollTop":"0"},0);
+            
+            var pageh= $(".page").height();
+            
+            var pageturnnum=0;
+            
+            
+            $("#bottombtn").on("click mousewheel",function(e){
+                if(pageturnnum < 2){
+                    $("body,html").animate({"scrollTop":"+="+pageh},1100);
+                    pageturnnum++;
+                    if(pageturnnum==2){
+                        pageturnnum=2;
+                    }
+                }
+            });
+            $("#topbtn").on("click mousewheel",function(){
+                if(pageturnnum > 0){
+                    $("body,html").animate({"scrollTop":"-="+pageh},1100);
+                    pageturnnum--;
+                    if(pageturnnum==0){
+                        pageturnnum=0;
+                    }
+                }
+            });
+            
+            
+// -------------------------------숫자룰렛----------------------------------------------           
+            var randTypearray =['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q'];
+            
+            var num = 0;
+            var inter1, inter2, inter3, inter4, inter5 ,inter6, inter7, inter8, inter9, inter10;
+            
+            inter1 = setInterval(function(){
+                num++;
+                if(num==randTypearray.length){
+                    num=0;
+                }
+                $("#span1").text(randTypearray[num]);
+                
+                setTimeout(function(){
+                    clearInterval(inter1);
+                    $("#span1").text('K');
+                },1500);
+            },50);
+            inter2 = setInterval(function(){
+                num++;
+                if(num==randTypearray.length){
+                    num=0;
+                }
+                $("#span2").text(randTypearray[num]);
+                
+                setTimeout(function(){
+                    clearInterval(inter2);
+                    $("#span2").text('I');
+                },2000);
+            },50);
+            inter3 = setInterval(function(){
+                num++;
+                if(num==randTypearray.length){
+                    num=0;
+                }
+                $("#span3").text(randTypearray[num]);
+                
+                setTimeout(function(){
+                    clearInterval(inter3);
+                    $("#span3").text('M');
+                },2500);
+            },50);
+            inter4 = setInterval(function(){
+                num++;
+                if(num==randTypearray.length){
+                    num=0;
+                }
+                $("#span4").text(randTypearray[num]);
+                
+                setTimeout(function(){
+                    clearInterval(inter4);
+                    $("#span4").text('J');
+                },3000);
+            },50);
+            inter5 = setInterval(function(){
+                num++;
+                if(num==randTypearray.length){
+                    num=0;
+                }
+                $("#span5").text(randTypearray[num]);
+                
+                setTimeout(function(){
+                    clearInterval(inter5);
+                    $("#span5").text('I');
+                },3500);
+            },50);
+            inter6 = setInterval(function(){
+                num++;
+                if(num==randTypearray.length){
+                    num=0;
+                }
+                $("#span6").text(randTypearray[num]);
+                
+                setTimeout(function(){
+                    clearInterval(inter6);
+                    $("#span6").text('N');
+                },3800);
+            },50);
+            inter7 = setInterval(function(){
+                num++;
+                if(num==randTypearray.length){
+                    num=0;
+                }
+                $("#span7").text(randTypearray[num]);
+                
+                setTimeout(function(){
+                    clearInterval(inter7);
+                    $("#span7").text('S');
+                },4100);
+            },50);
+            inter8 = setInterval(function(){
+                num++;
+                if(num==randTypearray.length){
+                    num=0;
+                }
+                $("#span8").text(randTypearray[num]);
+                
+                setTimeout(function(){
+                    clearInterval(inter8);
+                    $("#span8").text('E');
+                },4400);
+            },50);
+            inter9 = setInterval(function(){
+                num++;
+                if(num==randTypearray.length){
+                    num=0;
+                }
+                $("#span9").text(randTypearray[num]);
+                
+                setTimeout(function(){
+                    clearInterval(inter9);
+                    $("#span9").text('O');
+                },4600);
+            },50);
+            inter10 = setInterval(function(){
+                num++;
+                if(num==randTypearray.length){
+                    num=0;
+                }
+                $("#span10").text(randTypearray[num]);
+                
+                setTimeout(function(){
+                    clearInterval(inter10);
+                    $("#span10").text('K');
+                },4800);
+            },50);
+            
+            setTimeout(function(){
+                $("#maintype p").css({"opacity":"1"});
+            },5500);
+            setTimeout(function(){
+                $("#btnwrap").css({"left":"30px"});
+            },6800);
+// -------------------------------숫자룰렛---------------------------------------------- 
+
+            var bgTextlen = $("#bgText1 span").length;
+            var textnum = 0;
+            setInterval(function(){
+                for(var i = 0; i<bgTextlen; i++){
+                
+                    textnum++;
+                    if(textnum==randTypearray.length){
+                        textnum=0;
+                    }
+                
+                    $("#bgText1 span").eq(i).text(randTypearray[textnum]);
+                }
+            },50);
+            
+            
+            $(".bgText").animate({"top":"100vh"},7000,'linear');
+            setTimeout(function(){
+                $("#bgTextwrap").fadeOut(1400);
+            },4000);
+            
+//----------------------------------------------------------------------------- 
+            
+            var wintop;
+            $(window).scroll(function(){
+                wintop = $(window).scrollTop();
+                if(wintop >= pageh2){
+                    
+                    
+                    var randTypearray =['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q'];
+                    var numskill = 0;
+                    var textinter1, textinter2, textinter3, textinter4, textinter5 ,textinter6, textinter7,textinter8;
+            
+            
+            
+            textinter1 = setInterval(function(){
+                numskill++;
+                if(numskill==randTypearray.length){
+                   numskill=0;
+                }
+                $("#skillspan1").text(randTypearray[numskill]);
+                
+                setTimeout(function(){
+                    clearInterval(textinter1);
+                    $("#skillspan1").text('M');
+                },1000);
+            },50);
+            textinter2 = setInterval(function(){
+                numskill++;
+                if(numskill==randTypearray.length){
+                    numskill=0;
+                }
+                $("#skillspan2").text(randTypearray[numskill]);
+                
+                setTimeout(function(){
+                    clearInterval(textinter2);
+                    $("#skillspan2").text('Y');
+                },1200);
+            },50);
+            textinter3 = setInterval(function(){
+                numskill++;
+                if(numskill==randTypearray.length){
+                    numskill=0;
+                }
+                $("#skillspan3").text(randTypearray[numskill]);
+                
+                setTimeout(function(){
+                    clearInterval(textinter3);
+                    $("#skillspan3").text('S');
+                },1400);
+            },50);
+            textinter4 = setInterval(function(){
+                numskill++;
+                if(numskill==randTypearray.length){
+                    numskill=0;
+                }
+                $("#skillspan4").text(randTypearray[numskill]);
+                
+                setTimeout(function(){
+                    clearInterval(textinter4);
+                    $("#skillspan4").text('K');
+                },1600);
+            },50);
+            textinter5 = setInterval(function(){
+                numskill++;
+                if(numskill==randTypearray.length){
+                    numskill=0;
+                }
+                $("#skillspan5").text(randTypearray[numskill]);
+                
+                setTimeout(function(){
+                    clearInterval(textinter5);
+                    $("#skillspan5").text('I');
+                },1800);
+            },50);
+            textinter6 = setInterval(function(){
+                numskill++;
+                if(numskill==randTypearray.length){
+                    numskill=0;
+                }
+                $("#skillspan6").text(randTypearray[numskill]);
+                
+                setTimeout(function(){
+                    clearInterval(textinter6);
+                    $("#skillspan6").text('L');
+                },2000);
+            },50);
+            textinter7 = setInterval(function(){
+                numskill++;
+                if(numskill==randTypearray.length){
+                    numskill=0;
+                }
+                $("#skillspan7").text(randTypearray[numskill]);
+                
+                setTimeout(function(){
+                    clearInterval(textinter7);
+                    $("#skillspan7").text('L');
+                },2200);
+            },50);
+            textinter8 = setInterval(function(){
+                numskill++;
+                if(numskill==randTypearray.length){
+                    numskill=0;
+                }
+                $("#skillspan8").text(randTypearray[numskill]);
+                
+                setTimeout(function(){
+                    clearInterval(textinter8);
+                    $("#skillspan8").text('S');
+                },2400);
+            },50);
+            
+            var skillcovernum = 0;
+            setInterval(function(){
+               skillcovernum++;
+                $("#skilltextcover").css({"left":"+=50px"});
+                if(skillcovernum >= 8){
+                    $("#skilltextcover").css({"left":"400px"});
+                    $("#skilltextcover").css({"animation-play-state":"running"});
+                    
+                    setTimeout(function(){
+                        $("#skilltextcover").css({"display":"none"});
+                    },4000);
+                }
+            },220);
+            
+//          --------------------------------------------------------------------------------  
+            
+            var graphboxnum1 = 0, graphboxnum2 = 0, graphboxnum3 = 0, graphboxnum4 = 0;
+            var graphinter1,graphinter2,graphinter3,graphinter4;
+            
+            setTimeout(function(){
+                graphinter1 = setInterval(function(){
+                    graphboxnum1 ++;
+                    $("#graphbox1 .graphbox_box_box").eq(graphboxnum1-1).css({"background":"#4cff4d"});
+                    if(graphboxnum1 ==5){
+                        clearInterval(graphinter1);
+                    }
+                },350);
+                graphinter2 = setInterval(function(){
+                    graphboxnum2 ++;
+                    $("#graphbox2 .graphbox_box_box").eq(graphboxnum2-1).css({"background":"#4cff4d"});
+                    if(graphboxnum2 ==3){
+                        clearInterval(graphinter2);
+                    }
+                },350);
+                graphinter3 = setInterval(function(){
+                    graphboxnum3 ++;
+                    $("#graphbox3 .graphbox_box_box").eq(graphboxnum3-1).css({"background":"#4cff4d"});
+                    if(graphboxnum3 ==4){
+                        clearInterval(graphinter3);
+                    }
+                },350);
+                graphinter4 = setInterval(function(){
+                    graphboxnum4 ++;
+                    $("#graphbox4 .graphbox_box_box").eq(graphboxnum4-1).css({"background":"#4cff4d"});
+                    if(graphboxnum4 ==2){
+                        clearInterval(graphinter4);
+                    }
+                },350);
+            },6000);
+                    
+                }
+            });
+//            ----------------------------windowscroll----------------------------------
+        });
+    </script>
+</head>
+<body>
+  <div id="btnwrap">
+      <div id="topbtn" class="btn">▲</div>
+      <div id="bottombtn" class="btn">▼</div>
+  </div>
+  <div id="bgTextwrap">
+      <p class="bgText" id="bgText1">
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+</p>
+      <p class="bgText" id="bgText1">
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+</p>  
+      <p class="bgText" id="bgText1">
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+</p>
+      <p class="bgText" id="bgText1">
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+</p>
+      <p class="bgText" id="bgText1">
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+</p>
+      <p class="bgText" id="bgText1">
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+</p>
+      <p class="bgText" id="bgText1">
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+</p>
+      <p class="bgText" id="bgText1">
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+</p>
+      <p class="bgText" id="bgText1">
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+</p>
+      <p class="bgText" id="bgText1">
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+</p>
+      <p class="bgText" id="bgText1">
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+</p>
+      <p class="bgText" id="bgText1">
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+</p>
+      <p class="bgText" id="bgText1">
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+</p>
+      <p class="bgText" id="bgText1">
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+</p>
+      <p class="bgText" id="bgText1">
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+</p>
+      <p class="bgText" id="bgText1">
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+</p>
+      <p class="bgText" id="bgText1">
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+</p>
+      <p class="bgText" id="bgText1">
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+      </p>
+      <p class="bgText" id="bgText1">
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+</p>
+      <p class="bgText" id="bgText1">
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+          <span>K</span>
+</p>
+  </div>
+  
+  <div id="mainpage" class="page">
+      <div id="maintype">
+          <p>
+              <div class="numdiv"><span id="span1">K</span></div>
+              <div class="numdiv"><span id="span2">I</span></div>
+              <div class="numdiv"><span id="span3">M</span></div>
+              <div class="numdiv"><span id="span4">J</span></div>
+              <div class="numdiv"><span id="span5">I</span></div>
+              <div class="numdiv"><span id="span6">N</span></div>
+              <div class="numdiv"><span id="span7">S</span></div>
+              <div class="numdiv"><span id="span8">E</span></div>
+              <div class="numdiv"><span id="span9">O</span></div>
+              <div class="numdiv"><span id="span10">K</span></div>
+          </p>
+          <p>PORTFOLIO</p>
+      </div>
+  </div>
+  <div id="firstpage" class="page">
+      <div id="textwrap">
+         <div id="skilltextcover"></div>
+          <div class="skilltext"><span id="skillspan1">M</span></div>
+          <div class="skilltext"><span id="skillspan2">Y</span></div>
+          <div class="skilltext"><span id="skillspan3">S</span></div>
+          <div class="skilltext"><span id="skillspan4">K</span></div>
+          <div class="skilltext"><span id="skillspan5">I</span></div>
+          <div class="skilltext"><span id="skillspan6">L</span></div>
+          <div class="skilltext"><span id="skillspan7">L</span></div>
+          <div class="skilltext"><span id="skillspan8">L</span></div>
+  </div>
+  
+<div id="contwrap">
+     <div class="graphbox" id="graphbox1">
+        <div class="titlebox"><p>HTML</p></div>
+        <div class="graph">
+            <div class="graphbox_box">
+                <div class="graphbox_box_box"></div>
+                <div class="graphbox_box_box"></div>
+                <div class="graphbox_box_box"></div>
+                <div class="graphbox_box_box"></div>
+                <div class="graphbox_box_box"></div>
+            </div>
+        </div>
+     </div>
+      <div class="graphbox" id="graphbox2">
+          <div class="titlebox"><p>CSS</p></div>
+          <div class="graph">
+              <div class="graphbox_box">
+                <div class="graphbox_box_box"></div>
+                <div class="graphbox_box_box"></div>
+                <div class="graphbox_box_box"></div>
+                <div class="graphbox_box_box"></div>
+                <div class="graphbox_box_box"></div>
+              </div>
+          </div>
+      </div>
+      <div class="graphbox" id="graphbox3">
+          <div class="titlebox"><p>JAVASCRIPT</p></div>
+          <div class="graph">
+              <div class="graphbox_box">
+                <div class="graphbox_box_box"></div>
+                <div class="graphbox_box_box"></div>
+                <div class="graphbox_box_box"></div>
+                <div class="graphbox_box_box"></div>
+                <div class="graphbox_box_box"></div>
+              </div>
+          </div>
+      </div>
+      <div class="graphbox" id="graphbox4">
+          <div class="titlebox"><p>JQUERY</p></div>
+          <div class="graph">
+              <div class="graphbox_box">
+                <div class="graphbox_box_box"></div>
+                <div class="graphbox_box_box"></div>
+                <div class="graphbox_box_box"></div>
+                <div class="graphbox_box_box"></div>
+                <div class="graphbox_box_box"></div>
+              </div>
+          </div>
+      </div>
+  </div>
+  </div>
+</body>
+</html>

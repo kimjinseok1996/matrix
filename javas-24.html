@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Encode+Sans+Semi+Expanded:wght@300&display=swap');
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            background: black;
+            font-family: 'Encode Sans Semi Expanded', sans-serif;
+        }
+        #firstpage{
+            width: 1200px;
+            margin: 0 auto;
+        }
+        #textwrap{
+            width: 400px;
+            height: auto;
+            box-sizing: border-box;
+            margin: 100px;
+            margin-left: 100px;
+            position: relative;
+        }
+        #skilltextcover{
+            background: black;
+            width: 400px;
+            height: 40px;
+            position: absolute;
+            top: 0;
+            left: 50px;
+            border-left: 2px solid #4cff4d;
+            animation: textcovercus linear infinite 1.2s;
+            animation-play-state: paused;
+        }
+        .skilltext{
+            float: left;
+            width: 12.49%;
+            text-align: center;
+        }
+        #textwrap .skilltext span{
+            font-size: 30px;
+            color: #4cff4d;
+        }
+        @keyframes textcovercus{
+            0%{
+                border-left: 2px solid #4cff4d;
+            }
+            50%{
+                border-left: 2px solid black;
+            }
+            100%{
+                border-left: 2px solid #4cff4d;
+            }
+        }
+        
+        #contwrap{
+            clear: both;
+            width: 100vw;
+            height: 600px;
+            padding-top: 100px;
+        }
+        #contwrap p{
+            font-size: 40px;
+            color: #4cff4d;
+            line-height: 140px;
+            margin-left: 60px;
+        }
+        .graphbox{
+            width: 1200px;
+            height: 25%;
+        }
+        .titlebox{
+            float: left;
+            width: 350px;
+            height: 100%;
+        }
+        .graph{
+            float: left;
+            width: 800px;
+            height: 100%;
+        }
+        .graphbox_box{
+            width: 100%;
+            height: 50px;
+            border: 5px solid #4cff4d;
+            border-radius: 10px;
+            margin-top: 50px;
+        }
+        .graphbox_box_box{
+            float: left;
+            margin: 0.5%;
+            width: 19%;
+            height: 83%;
+            border-radius: 3px;
+            background: black;
+        }
+    </style>
+    <script>
+        $(function(){
+           var randTypearray =['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q'];
+            
+            var num = 0;
+            var textinter1, textinter2, textinter3, textinter4, textinter5 ,textinter6, textinter7;
+            
+            textinter1 = setInterval(function(){
+                num++;
+                if(num==randTypearray.length){
+                    num=0;
+                }
+                $("#span1").text(randTypearray[num]);
+                
+                setTimeout(function(){
+                    clearInterval(textinter1);
+                    $("#span1").text('M');
+                },1000);
+            },50);
+            textinter2 = setInterval(function(){
+                num++;
+                if(num==randTypearray.length){
+                    num=0;
+                }
+                $("#span2").text(randTypearray[num]);
+                
+                setTimeout(function(){
+                    clearInterval(textinter2);
+                    $("#span2").text('Y');
+                },1200);
+            },50);
+            textinter3 = setInterval(function(){
+                num++;
+                if(num==randTypearray.length){
+                    num=0;
+                }
+                $("#span3").text(randTypearray[num]);
+                
+                setTimeout(function(){
+                    clearInterval(textinter3);
+                    $("#span3").text('S');
+                },1400);
+            },50);
+            textinter4 = setInterval(function(){
+                num++;
+                if(num==randTypearray.length){
+                    num=0;
+                }
+                $("#span4").text(randTypearray[num]);
+                
+                setTimeout(function(){
+                    clearInterval(textinter4);
+                    $("#span4").text('K');
+                },1600);
+            },50);
+            textinter5 = setInterval(function(){
+                num++;
+                if(num==randTypearray.length){
+                    num=0;
+                }
+                $("#span5").text(randTypearray[num]);
+                
+                setTimeout(function(){
+                    clearInterval(textinter5);
+                    $("#span5").text('I');
+                },1800);
+            },50);
+            textinter6 = setInterval(function(){
+                num++;
+                if(num==randTypearray.length){
+                    num=0;
+                }
+                $("#span6").text(randTypearray[num]);
+                
+                setTimeout(function(){
+                    clearInterval(textinter6);
+                    $("#span6").text('L');
+                },2000);
+            },50);
+            textinter7 = setInterval(function(){
+                num++;
+                if(num==randTypearray.length){
+                    num=0;
+                }
+                $("#span7").text(randTypearray[num]);
+                
+                setTimeout(function(){
+                    clearInterval(textinter7);
+                    $("#span7").text('L');
+                },2200);
+            },50);
+            textinter8 = setInterval(function(){
+                num++;
+                if(num==randTypearray.length){
+                    num=0;
+                }
+                $("#span8").text(randTypearray[num]);
+                
+                setTimeout(function(){
+                    clearInterval(textinter8);
+                    $("#span8").text('S');
+                },2400);
+            },50);
+            
+            var skillcovernum = 0;
+            setInterval(function(){
+               skillcovernum++;
+                $("#skilltextcover").css({"left":"+=50px"});
+                if(skillcovernum >= 8){
+                    $("#skilltextcover").css({"left":"400px"});
+                    $("#skilltextcover").css({"animation-play-state":"running"});
+                    
+                    setTimeout(function(){
+                        $("#skilltextcover").css({"display":"none"});
+                    },4000);
+                }
+            },220);
+            
+//          --------------------------------------------------------------------------------  
+            
+            var graphboxnum1 = 0, graphboxnum2 = 0, graphboxnum3 = 0, graphboxnum4 = 0;
+            var graphinter1,graphinter2,graphinter3,graphinter4;
+            
+            setTimeout(function(){
+                graphinter1 = setInterval(function(){
+                    graphboxnum1 ++;
+                    $("#graphbox1 .graphbox_box_box").eq(graphboxnum1-1).css({"background":"#4cff4d"});
+                    if(graphboxnum1 ==5){
+                        clearInterval(graphinter1);
+                    }
+                },350);
+                graphinter2 = setInterval(function(){
+                    graphboxnum2 ++;
+                    $("#graphbox2 .graphbox_box_box").eq(graphboxnum2-1).css({"background":"#4cff4d"});
+                    if(graphboxnum2 ==3){
+                        clearInterval(graphinter2);
+                    }
+                },350);
+                graphinter3 = setInterval(function(){
+                    graphboxnum3 ++;
+                    $("#graphbox3 .graphbox_box_box").eq(graphboxnum3-1).css({"background":"#4cff4d"});
+                    if(graphboxnum3 ==4){
+                        clearInterval(graphinter3);
+                    }
+                },350);
+                graphinter4 = setInterval(function(){
+                    graphboxnum4 ++;
+                    $("#graphbox4 .graphbox_box_box").eq(graphboxnum4-1).css({"background":"#4cff4d"});
+                    if(graphboxnum4 ==2){
+                        clearInterval(graphinter4);
+                    }
+                },350);
+            },6000);
+        });
+    </script>
+</head>
+<body>
+ <div id="firstpage">
+  <div id="textwrap">
+         <div id="skilltextcover"></div>
+          <div class="skilltext"><span id="span1">M</span></div>
+          <div class="skilltext"><span id="span2">Y</span></div>
+          <div class="skilltext"><span id="span3">S</span></div>
+          <div class="skilltext"><span id="span4">K</span></div>
+          <div class="skilltext"><span id="span5">I</span></div>
+          <div class="skilltext"><span id="span6">L</span></div>
+          <div class="skilltext"><span id="span7">L</span></div>
+          <div class="skilltext"><span id="span8">L</span></div>
+  </div>
+  
+<div id="contwrap">
+     <div class="graphbox" id="graphbox1">
+        <div class="titlebox"><p>HTML</p></div>
+        <div class="graph">
+            <div class="graphbox_box">
+                <div class="graphbox_box_box"></div>
+                <div class="graphbox_box_box"></div>
+                <div class="graphbox_box_box"></div>
+                <div class="graphbox_box_box"></div>
+                <div class="graphbox_box_box"></div>
+            </div>
+        </div>
+     </div>
+      <div class="graphbox" id="graphbox2">
+          <div class="titlebox"><p>CSS</p></div>
+          <div class="graph">
+              <div class="graphbox_box">
+                <div class="graphbox_box_box"></div>
+                <div class="graphbox_box_box"></div>
+                <div class="graphbox_box_box"></div>
+                <div class="graphbox_box_box"></div>
+                <div class="graphbox_box_box"></div>
+              </div>
+          </div>
+      </div>
+      <div class="graphbox" id="graphbox3">
+          <div class="titlebox"><p>JAVASCRIPT</p></div>
+          <div class="graph">
+              <div class="graphbox_box">
+                <div class="graphbox_box_box"></div>
+                <div class="graphbox_box_box"></div>
+                <div class="graphbox_box_box"></div>
+                <div class="graphbox_box_box"></div>
+                <div class="graphbox_box_box"></div>
+              </div>
+          </div>
+      </div>
+      <div class="graphbox" id="graphbox4">
+          <div class="titlebox"><p>JQUERY</p></div>
+          <div class="graph">
+              <div class="graphbox_box">
+                <div class="graphbox_box_box"></div>
+                <div class="graphbox_box_box"></div>
+                <div class="graphbox_box_box"></div>
+                <div class="graphbox_box_box"></div>
+                <div class="graphbox_box_box"></div>
+              </div>
+          </div>
+      </div>
+  </div>
+  </div>
+   
+</body>
+</html>
